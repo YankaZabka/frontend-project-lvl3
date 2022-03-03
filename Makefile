@@ -6,7 +6,7 @@ install:
 lint:
 	npx eslint .
 
-lint-and-fix:
+lint-fix:
 	npx eslint --fix .
 
 test-coverage:
