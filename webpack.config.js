@@ -3,7 +3,6 @@ const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
-console.log('IS DEV ', isDev);
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
@@ -21,7 +20,7 @@ module.exports = {
   devServer: {
     port: 4200,
   },
-  devtool: isDev ? 'source-map' : '',
+  devtool: isDev ? 'source-map' : false,
   module: {
     rules: [
       {
