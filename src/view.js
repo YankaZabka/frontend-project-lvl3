@@ -7,7 +7,7 @@ export default (state, { feedbackEl, formEl, inputEl }, i18n) => {
     console.log('previousValue:', previousValue);
 
     if (path === 'feeds') {
-      feedbackEl.textContent = i18n.t("formSuccess");
+      feedbackEl.textContent = i18n.t('formSuccess');
       feedbackEl.classList.remove('text-danger');
       feedbackEl.classList.add('text-success');
 

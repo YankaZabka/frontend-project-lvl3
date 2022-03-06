@@ -1,23 +1,21 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'regenerator-runtime/runtime.js';
 import 'core-js/stable';
+import i18n from 'i18next';
 import getWatchedState from './view.js';
 import isValidUrl from './yupValidate.js';
-import i18n from "i18next";
-import resources from "./locales/index"
-
+import resources from './locales/index.js';
 
 const DEFAULT_LANGUAGE = 'ru';
 
 const app = () => {
-
   const i18nInstance = i18n.createInstance();
   i18nInstance.init({
     lng: DEFAULT_LANGUAGE,
     debug: false,
     resources,
   }).catch((e) => {
-    console.log("Localization error: ", e.message)
+    console.log('Localization error: ', e.message);
   });
 
   const state = {
