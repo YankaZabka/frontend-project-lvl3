@@ -1,13 +1,13 @@
 import onChange from 'on-change';
 
-export default (state, { feedbackEl, formEl, inputEl }) => {
+export default (state, { feedbackEl, formEl, inputEl }, i18n) => {
   const watchedState = onChange(state, (path, value, previousValue) => {
     console.log('path:', path);
     console.log('value:', value);
     console.log('previousValue:', previousValue);
 
     if (path === 'feeds') {
-      feedbackEl.textContent = 'Rss успешно загружен';
+      feedbackEl.textContent = i18n.t("formSuccess");
       feedbackEl.classList.remove('text-danger');
       feedbackEl.classList.add('text-success');
 

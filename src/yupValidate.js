@@ -1,12 +1,12 @@
 import { object, string } from 'yup';
 
-export default (feeds, newUrl) => {
+export default (feeds, newUrl, i18n) => {
   const schema = object({
     url: string()
-      .url()
+      .url(i18n.t("formErrors.wrongUrl"))
       .test(
         'is-uniq',
-        () => 'RSS уже существует',
+        () => i18n.t("formErrors.isUniq"),
         () => {
           const sameUrl = feeds.find((item) => item.url === newUrl);
           return sameUrl === undefined;

@@ -3,8 +3,23 @@ import 'regenerator-runtime/runtime.js';
 import 'core-js/stable';
 import getWatchedState from './view.js';
 import isValidUrl from './yupValidate.js';
+import i18n from "i18next";
+import resources from "./locales/index"
+
+
+const DEFAULT_LANGUAGE = 'ru';
 
 const app = () => {
+
+  const i18nInstance = i18n.createInstance();
+  i18nInstance.init({
+    lng: DEFAULT_LANGUAGE,
+    debug: false,
+    resources,
+  }).catch((e) => {
+    console.log("Localization error: ", e.message)
+  });
+
   const state = {
     form: {
       state: 'empty',
@@ -25,7 +40,7 @@ const app = () => {
     feedbackEl,
   };
 
-  const watchedState = getWatchedState(state, elements);
+  const watchedState = getWatchedState(state, elements, i18nInstance);
 
   formEl.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -33,7 +48,7 @@ const app = () => {
     const formData = new FormData(e.target);
     const rssUrl = formData.get('url');
 
-    isValidUrl(state.feeds, rssUrl)
+    isValidUrl(state.feeds, rssUrl, i18nInstance)
       .then((response) => {
         watchedState.feeds.push(response);
       }).catch((err) => {
