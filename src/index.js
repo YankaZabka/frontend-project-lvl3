@@ -53,7 +53,7 @@ const app = () => {
 
     isValidUrl(state.feeds, rssUrl, i18nInstance)
       .then(() => {
-        fetchXml(state, watchedState, rssUrl, i18nInstance)
+        fetchXml(state, watchedState, rssUrl, i18nInstance);
       })
       .catch((err) => {
         watchedState.form.error = err.message;
