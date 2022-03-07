@@ -6,6 +6,7 @@ import getWatchedState from './view.js';
 import isValidUrl from './yupValidate.js';
 import resources from './locales/index.js';
 import fetchXml from './fetchXml.js';
+import setAutoUpdate from './setAutoUpdate.js';
 
 const DEFAULT_LANGUAGE = 'ru';
 
@@ -52,13 +53,13 @@ const app = () => {
     const rssUrl = formData.get('url');
 
     isValidUrl(state.feeds, rssUrl, i18nInstance)
-      .then(() => {
-        fetchXml(state, watchedState, rssUrl, i18nInstance);
-      })
+      .then(() => fetchXml(state, watchedState, rssUrl, i18nInstance))
       .catch((err) => {
         watchedState.form.error = err.message;
       });
   });
+
+  setAutoUpdate(state, watchedState, i18nInstance);
 };
 
 app();
