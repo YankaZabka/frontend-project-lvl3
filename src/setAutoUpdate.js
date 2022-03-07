@@ -9,7 +9,6 @@ const setAutoUpdate = (state, watchedState, i18nInstance) => {
     const updateFeed = () => {
       fetchXml(state, watchedState, url, i18nInstance, true)
         .then(() => {
-          console.log('UPDATEFEED');
           setTimeout(() => updateFeed(), 5000);
         });
     };
