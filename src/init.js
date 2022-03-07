@@ -1,7 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap';
-import 'regenerator-runtime/runtime.js';
-import 'core-js/stable';
 import i18n from 'i18next';
 import getWatchedState from './view.js';
 import isValidUrl from './yupValidate.js';
@@ -62,4 +58,4 @@ const app = () => {
   setAutoUpdate(watchedState, i18nInstance);
 };
 
-app();
+export default app;
