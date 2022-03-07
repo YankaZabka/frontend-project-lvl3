@@ -1,3 +1,5 @@
+import renderModal from "./modal.js"
+
 export default (container, posts, i18n) => {
   container.innerHTML = '';
   const card = document.createElement('div');
@@ -21,12 +23,18 @@ export default (container, posts, i18n) => {
       'border-end-0',
     );
     const titleEl = document.createElement('a');
-    titleEl.classList.add('fw-bold');
     titleEl.setAttribute('target', '_blank');
     titleEl.setAttribute('rel', 'noopener noreferrer');
     titleEl.setAttribute('href', item.link);
     titleEl.dataset.id = item.id;
     titleEl.textContent = item.title;
+
+    if (item.state === 'visited') {
+        titleEl.classList.add('fw-normal');
+    }
+    if (item.state === 'unvisited') {
+        titleEl.classList.add('fw-bold');
+    }
 
     const btnEl = document.createElement('button');
     btnEl.classList.add('btn', 'btn-outline-primary', 'btn-sm');
@@ -35,9 +43,14 @@ export default (container, posts, i18n) => {
     btnEl.dataset.bsToggle = 'modal';
     btnEl.dataset.bsTarget = '#modal';
     btnEl.textContent = i18n.t('browsing');
+    btnEl.addEventListener("click", () => {
+      item.state = 'visited';
+      renderModal(item, titleEl)
+    })
 
     listGroupItem.append(titleEl, btnEl);
     listGroup.append(listGroupItem);
+
   });
 
   cardBody.append(cardTitle);
