@@ -52,7 +52,9 @@ const app = () => {
     const rssUrl = formData.get('url');
 
     isValidUrl(state.feeds, rssUrl, i18nInstance)
-      .then(() => fetchXml(state, watchedState, rssUrl, i18nInstance))
+      .then(() => {
+        fetchXml(state, watchedState, rssUrl, i18nInstance)
+      })
       .catch((err) => {
         watchedState.form.error = err.message;
       });

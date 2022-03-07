@@ -10,12 +10,12 @@ export default (state, watchedState, url, i18n) => {
     })
     .then((data) => {
       try {
-        const parsedData = parseXml(data);
+        const parsedData = parseXml(data, url);
         watchedState.feeds.push({
           title: parsedData.feedTitle,
           description: parsedData.feedDescription,
           id: parsedData.id,
-          link: parsedData.feedLink,
+          url: parsedData.url,
         });
         watchedState.posts = [...state.posts, ...parsedData.posts];
       } catch (e) {
