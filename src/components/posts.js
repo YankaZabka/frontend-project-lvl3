@@ -1,4 +1,4 @@
-import renderModal from "./modal.js"
+import renderModal from './modal.js';
 
 export default (container, posts, i18n) => {
   container.innerHTML = '';
@@ -30,10 +30,10 @@ export default (container, posts, i18n) => {
     titleEl.textContent = item.title;
 
     if (item.state === 'visited') {
-        titleEl.classList.add('fw-normal');
+      titleEl.classList.add('fw-normal');
     }
     if (item.state === 'unvisited') {
-        titleEl.classList.add('fw-bold');
+      titleEl.classList.add('fw-bold');
     }
 
     const btnEl = document.createElement('button');
@@ -43,14 +43,13 @@ export default (container, posts, i18n) => {
     btnEl.dataset.bsToggle = 'modal';
     btnEl.dataset.bsTarget = '#modal';
     btnEl.textContent = i18n.t('browsing');
-    btnEl.addEventListener("click", () => {
+    btnEl.addEventListener('click', () => {
       item.state = 'visited';
-      renderModal(item, titleEl)
-    })
+      renderModal(item, titleEl);
+    });
 
     listGroupItem.append(titleEl, btnEl);
     listGroup.append(listGroupItem);
-
   });
 
   cardBody.append(cardTitle);
