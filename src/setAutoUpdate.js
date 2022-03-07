@@ -1,19 +1,45 @@
-import fetchXml from './fetchXml.js';
+import {differenceWith, isEqual, uniqueId} from "lodash";
+import parseXml from "./parseXml";
+import axios from "axios"
+import useProxy from "./utils/useProxy.js";
 
-const setAutoUpdate = (state, watchedState, i18nInstance) => {
-  if (state.feeds.length === 0) {
-    setTimeout(() => setAutoUpdate(state, watchedState, i18nInstance), 5000);
-    return;
-  }
-  state.feeds.forEach(({ url }) => {
-    const updateFeed = () => {
-      fetchXml(state, watchedState, url, i18nInstance, true)
-        .then(() => {
-          setTimeout(() => updateFeed(), 5000);
-        });
-    };
-    updateFeed();
-  });
+const setAutoUpdate = (watchedState, i18n) => {
+    if (watchedState.feeds.length === 0) {
+        setTimeout(() => setAutoUpdate(watchedState), 10000);
+        return;
+    }
+
+    const promises = watchedState.feeds.map(({url, id}) => {
+        return axios.get(useProxy(url))
+            .then((response) => {
+                if (response.status === 200) return response;
+                throw new Error(i18n.t('formErrors.network'));
+            })
+            .then((fetchedData) => {
+                const parsedData = parseXml(fetchedData, url);
+                const oldPosts = watchedState.posts.filter((post) => post.feedId === id);
+                const titles = oldPosts.map((post) => post.title);
+                const newPosts = differenceWith(parsedData.posts, oldPosts, isEqual)
+                    .filter((newPost) => !titles.includes(newPost.title))
+                    .map(item => {
+                        return {
+                            id: uniqueId(),
+                            title: item.title,
+                            link: item.link,
+                            description: item.description,
+                            feedId: item.feeds,
+                            state: item.state
+                        };
+                    });
+                watchedState.posts.unshift(...newPosts);
+            })
+            .catch((e) => {
+                console.warn(e);
+            })
+    });
+    Promise.all(promises).then(() => {
+        setTimeout(() => setAutoUpdate(watchedState), 10000);
+    });
 };
 
 export default setAutoUpdate;

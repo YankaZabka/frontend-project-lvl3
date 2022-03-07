@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap"
 import 'regenerator-runtime/runtime.js';
 import 'core-js/stable';
 import i18n from 'i18next';
@@ -22,7 +23,6 @@ const app = () => {
 
   const state = {
     form: {
-      state: 'empty',
       feedback: '',
       error: '',
     },
@@ -59,7 +59,8 @@ const app = () => {
       });
   });
 
-  setAutoUpdate(state, watchedState, i18nInstance);
+  setAutoUpdate(watchedState, i18nInstance);
+
 };
 
 app();
