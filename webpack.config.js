@@ -5,9 +5,9 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
-  context: path.resolve(__dirname, 'src'),
+  // context: path.resolve(__dirname, 'src'),
   mode: 'development',
-  entry: './index.js',
+  entry: './src/index.js',
   output: {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
