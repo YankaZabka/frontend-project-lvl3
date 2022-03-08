@@ -51,6 +51,8 @@ const app = () => {
     const formData = new FormData(e.target);
     const rssUrl = formData.get('url');
 
+    console.log("RSSURL", rssUrl)
+
     isValidUrl(state.feeds, rssUrl, i18nInstance)
       .then(() => {
         watchedState.form.status = 'loading';
