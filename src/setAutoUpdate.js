@@ -1,4 +1,4 @@
-import { differenceWith, isEqual, uniqueId } from 'lodash';
+import _ from 'lodash';
 import axios from 'axios';
 import parseXml from './parseXml.js';
 import useProxy from './utils/useProxy.js';
@@ -18,10 +18,10 @@ const setAutoUpdate = (watchedState, i18n) => {
       const parsedData = parseXml(fetchedData, url);
       const oldPosts = watchedState.posts.filter((post) => post.feedId === id);
       const titles = oldPosts.map((post) => post.title);
-      const newPosts = differenceWith(parsedData.posts, oldPosts, isEqual)
+      const newPosts = _.differenceWith(parsedData.posts, oldPosts, _.isEqual)
         .filter((newPost) => !titles.includes(newPost.title))
         .map((item) => ({
-          id: uniqueId(),
+          id: _.uniqueId(),
           title: item.title,
           link: item.link,
           description: item.description,

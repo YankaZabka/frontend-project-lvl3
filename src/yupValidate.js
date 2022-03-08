@@ -1,8 +1,8 @@
-import { object, string } from 'yup';
+import * as yup from 'yup';
 
 export default (feeds, newUrl, i18n) => {
-  const schema = object({
-    url: string()
+  const schema = yup.object({
+    url: yup.string()
       .url(i18n.t('formErrors.wrongUrl'))
       .test(
         'is-uniq',
