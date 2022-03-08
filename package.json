@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "RSS-agregator",
   "main": "src/init.js",
+  "type": "module",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "build": "cross-env NODE_ENV=productioon webpack --mode production",

@@ -1,10 +1,15 @@
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const path = require('path');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import path from 'path'
+import HTMLWebpackPlugin from 'html-webpack-plugin';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const isDev = process.env.NODE_ENV === 'development';
 
-module.exports = {
+export default {
   mode: 'development',
   entry: './index.js',
   output: {
