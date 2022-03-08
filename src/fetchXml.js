@@ -3,6 +3,7 @@ import parseXml from './parseXml.js';
 import useProxy from './utils/useProxy.js';
 
 export default (state, watchedState, url, i18n) => {
+  console.log("STATE", state)
   const proxyfyUrl = useProxy(url);
 
   console.log('PROXYFYURL!!!', proxyfyUrl);
