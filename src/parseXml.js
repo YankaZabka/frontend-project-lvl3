@@ -4,7 +4,6 @@ export default (fetchedData, url) => {
   const parser = new DOMParser();
   const feedId = uniqueId();
   const xmlDoc = parser.parseFromString(fetchedData.data.contents, 'text/xml');
-  console.log('XMLDOC', xmlDoc);
   const feedTitle = xmlDoc.querySelector('channel > title').textContent;
   const feedDescription = xmlDoc.querySelector('channel > description').textContent;
   const posts = Array.from(xmlDoc.querySelectorAll('item')).map((item) => {
