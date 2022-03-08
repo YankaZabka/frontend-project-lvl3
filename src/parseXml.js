@@ -1,8 +1,6 @@
 import uniqueId from 'lodash/uniqueId.js';
 
 export default (fetchedData, url) => {
-  console.log("PARSING")
-
   const parser = new DOMParser();
   const feedId = uniqueId();
   const xmlDoc = parser.parseFromString(fetchedData.data.contents, 'text/xml');

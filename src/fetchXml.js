@@ -3,10 +3,7 @@ import parseXml from './parseXml.js';
 import useProxy from './utils/useProxy.js';
 
 export default (state, watchedState, url, i18n) => {
-  const proxyfyUrl = useProxy(url);
-  console.log("FETCHING")
-
-  return axios.get(proxyfyUrl)
+  return axios.get(useProxy(url))
     .then((response) => {
       if (response.status === 200) {
         watchedState.form.status = 'succeed';

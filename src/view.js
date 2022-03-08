@@ -8,9 +8,12 @@ export default (state, {
 
   const watchedState = onChange(state, (path, value) => {
     if (path === 'feeds') {
-      // feedbackEl.textContent = i18n.t('formSuccess');
-      // feedbackEl.classList.remove('text-danger');
-      // feedbackEl.classList.add('text-success');
+      inputEl.value = ""
+      inputEl.focus()
+
+      feedbackEl.textContent = i18n.t('formSuccess');
+      feedbackEl.classList.remove('text-danger');
+      feedbackEl.classList.add('text-success');
 
       inputEl.classList.remove('is-invalid');
       renderFeeds(feedsContainer, value, i18n);
@@ -22,35 +25,6 @@ export default (state, {
       feedbackEl.classList.add('text-danger');
     } else if (path === 'posts') {
       renderPosts(postsContainer, value, i18n);
-    } else if (path === 'form.status') {
-      switch (value) {
-        case 'loading':
-          inputEl.disabled = true;
-          inputEl.readOnly = true;
-          formBtn.disabled = true;
-          formEl.reset();
-          inputEl.focus();
-          break;
-        case 'succeed':
-          inputEl.disabled = false;
-          inputEl.readOnly = false;
-          formBtn.disabled = false;
-          formEl.reset();
-          inputEl.focus();
-          feedbackEl.textContent = i18n.t('formSuccess');
-          feedbackEl.classList.remove('text-danger');
-          feedbackEl.classList.add('text-success');
-          break;
-        case 'failed':
-          inputEl.disabled = false;
-          inputEl.readOnly = false;
-          formBtn.disabled = false;
-          formEl.reset();
-          inputEl.focus();
-          break;
-        default:
-          throw new Error(`Unknown loading process status: ${value}`);
-      }
     }
   });
 

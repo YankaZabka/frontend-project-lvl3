@@ -1,9 +1,7 @@
 import * as yup from 'yup';
 
 export default (feeds, newUrl, i18n) => {
-    console.log("VALIDATION")
-
-  const schema = yup.string()
+    const schema = yup.string()
       .url(i18n.t('formErrors.wrongUrl'))
       .test(
         'is-uniq',
