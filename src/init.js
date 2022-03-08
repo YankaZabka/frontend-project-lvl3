@@ -50,6 +50,7 @@ const app = () => {
 
     const formData = new FormData(e.target);
     const rssUrl = formData.get('url');
+    formEl.reset()
 
     console.log("RSSURL", rssUrl)
 
