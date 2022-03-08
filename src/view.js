@@ -5,8 +5,8 @@ import renderFeeds from './components/feeds.js';
 export default (state, {
   feedbackEl, formEl, inputEl, feedsContainer, postsContainer, formBtn,
 }, i18n) => {
+
   const watchedState = onChange(state, (path, value) => {
-    console.log(state.form.status);
     if (path === 'feeds') {
       feedbackEl.textContent = i18n.t('formSuccess');
       feedbackEl.classList.remove('text-danger');

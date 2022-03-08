@@ -1,8 +1,9 @@
 import * as yup from 'yup';
 
 export default (feeds, newUrl, i18n) => {
-  const schema = yup.object({
-    url: yup.string()
+    console.log("VALIDATION")
+
+  const schema = yup.string()
       .url(i18n.t('formErrors.wrongUrl'))
       .test(
         'is-uniq',
@@ -11,8 +12,7 @@ export default (feeds, newUrl, i18n) => {
           const sameUrl = feeds.find((item) => item.url === newUrl);
           return sameUrl === undefined;
         },
-      ),
-  });
+      );
 
-  return schema.validate({ url: newUrl });
+  return schema.validate(newUrl);
 };
