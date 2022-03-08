@@ -3,7 +3,7 @@ import renderPosts from './components/posts.js';
 import renderFeeds from './components/feeds.js';
 
 export default (state, {
-  feedbackEl, formEl, inputEl, feedsContainer, postsContainer,
+  feedbackEl, formEl, inputEl, feedsContainer, postsContainer, formBtn,
 }, i18n) => {
   const watchedState = onChange(state, (path, value) => {
     console.log(state.form.status);
@@ -27,18 +27,21 @@ export default (state, {
         case 'loading':
           inputEl.disabled = true;
           inputEl.readOnly = true;
+          formBtn.disabled = true;
           formEl.reset();
           inputEl.focus();
           break;
         case 'succeed':
           inputEl.disabled = false;
           inputEl.readOnly = false;
+          formBtn.disabled = false;
           formEl.reset();
           inputEl.focus();
           break;
         case 'failed':
           inputEl.disabled = false;
           inputEl.readOnly = false;
+          formBtn.disabled = false;
           formEl.reset();
           inputEl.focus();
           break;

@@ -32,6 +32,7 @@ const app = () => {
   const feedbackEl = document.querySelector('.feedback');
   const feedsContainer = document.querySelector('.feeds');
   const postsContainer = document.querySelector('.posts');
+  const formBtn = document.querySelector("button[type='submit']");
 
   const elements = {
     formEl,
@@ -39,6 +40,7 @@ const app = () => {
     feedbackEl,
     feedsContainer,
     postsContainer,
+    formBtn,
   };
 
   const watchedState = getWatchedState(state, elements, i18nInstance);
