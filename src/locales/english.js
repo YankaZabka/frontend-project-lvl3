@@ -4,7 +4,7 @@ export default {
       wrongUrl: 'Link must be a valid URL',
       isUniq: 'RSS already exists',
       network: 'Network response was not ok',
-      parsing: 'Xml parsing error',
+      parsing: 'The resource does not contain valid RSS',
     },
     formSuccess: 'RSS uploaded successfully',
     feeds: 'Feeds',
