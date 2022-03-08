@@ -8,9 +8,9 @@ export default (state, {
 
   const watchedState = onChange(state, (path, value) => {
     if (path === 'feeds') {
-      feedbackEl.textContent = i18n.t('formSuccess');
-      feedbackEl.classList.remove('text-danger');
-      feedbackEl.classList.add('text-success');
+      // feedbackEl.textContent = i18n.t('formSuccess');
+      // feedbackEl.classList.remove('text-danger');
+      // feedbackEl.classList.add('text-success');
 
       inputEl.classList.remove('is-invalid');
       renderFeeds(feedsContainer, value, i18n);
@@ -37,6 +37,9 @@ export default (state, {
           formBtn.disabled = false;
           formEl.reset();
           inputEl.focus();
+          feedbackEl.textContent = i18n.t('formSuccess');
+          feedbackEl.classList.remove('text-danger');
+          feedbackEl.classList.add('text-success');
           break;
         case 'failed':
           inputEl.disabled = false;
