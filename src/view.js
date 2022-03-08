@@ -27,6 +27,8 @@ export default (state, {
         case 'loading':
           inputEl.disabled = true;
           inputEl.readOnly = true;
+          formEl.reset();
+          inputEl.focus();
           break;
         case 'succeed':
           inputEl.disabled = false;
@@ -37,6 +39,8 @@ export default (state, {
         case 'failed':
           inputEl.disabled = false;
           inputEl.readOnly = false;
+          formEl.reset();
+          inputEl.focus();
           break;
         default:
           throw new Error(`Unknown loading process status: ${value}`);
