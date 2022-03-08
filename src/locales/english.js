@@ -3,7 +3,7 @@ export default {
     formErrors: {
       wrongUrl: 'Link must be a valid URL',
       isUniq: 'RSS already exists',
-      network: 'Network response was not ok',
+      network: 'Network error',
       parsing: 'The resource does not contain valid RSS',
     },
     formSuccess: 'RSS uploaded successfully',

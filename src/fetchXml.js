@@ -26,6 +26,10 @@ export default (state, watchedState, url, i18n) => {
       }
     })
     .catch((err) => {
+      if (err.message.includes("Network")) {
+        watchedState.form.error = i18n.t('formErrors.network')
+        return
+      }
       watchedState.form.status = 'failed';
       watchedState.form.error = err.message;
     });
