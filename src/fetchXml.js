@@ -14,6 +14,7 @@ export default (state, watchedState, url, i18n) => {
     })
     .then((fetchedData) => {
       try {
+        watchedState.form.status = 'succeed';
         const parsedData = parseXml(fetchedData, url);
         watchedState.feeds.unshift({
           title: parsedData.feedTitle,
@@ -27,6 +28,7 @@ export default (state, watchedState, url, i18n) => {
       }
     })
     .catch((err) => {
+      watchedState.form.status = 'failed';
       watchedState.form.error = err.message;
     });
 };
