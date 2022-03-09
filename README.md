@@ -6,6 +6,8 @@
 ---
 Link
 : [vercel](https://frontend-project-lvl3-yankazabka.vercel.app/) 
+
+![alt text](preview.jpg)
 ___
 ### Description
 **Rss-aggregator** is a service for aggregating RSS feeds, with which it is convenient to read sources, such as blogs. It allows you to **add** a large number of RSS feeds, **updates** them itself and adds new entries to the general feed.
