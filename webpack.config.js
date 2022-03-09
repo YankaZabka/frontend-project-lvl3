@@ -1,3 +1,5 @@
+/* eslint no-underscore-dangle: 0 */
+
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import path, { dirname } from 'path';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
