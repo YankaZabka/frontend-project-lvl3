@@ -24,13 +24,14 @@ export default (state, watchedState, url, i18n) => {
       } catch (e) {
         throw new Error(i18n.t('formErrors.parsing'));
       }
+      watchedState.form.status = "ready"
     })
     .catch((err) => {
       if (err.message.includes("Network")) {
         watchedState.form.error = i18n.t('formErrors.network')
         return
       }
-      watchedState.form.status = 'failed';
       watchedState.form.error = err.message;
+      watchedState.form.status = "ready"
     });
 };

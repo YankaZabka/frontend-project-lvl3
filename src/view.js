@@ -25,6 +25,21 @@ export default (state, {
       feedbackEl.classList.add('text-danger');
     } else if (path === 'posts') {
       renderPosts(postsContainer, value, i18n);
+    } else if (path === "form.status") {
+      switch(value) {
+        case 'loading':
+            console.log("LOADING")
+          inputEl.setAttribute("readonly", "readonly")
+          formBtn.disabled = true
+              break;
+        case 'ready':
+            console.log("READY")
+            inputEl.removeAttribute("readonly")
+          formBtn.disabled = false
+              break;
+        default:
+              break;
+      }
     }
   });
 
